@@ -1,0 +1,456 @@
+/* ============================================================
+   Gabinet Ginekologiczno-Położniczy – Blue Theme (#062C77)
+   Design: Glassmorphism + Bento Grid | Deep Blue Palette
+   ============================================================ */
+
+/* --- Base & Reset --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1E3A5F;
+    background-color: #F8FAFC;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Glassmorphism Utilities --- */
+.glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.glass-dark {
+    background: rgba(6, 44, 119, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(6, 44, 119, 0.12);
+}
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+.nav-link {
+    position: relative;
+    color: #1E3A5F;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #062C77;
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #062C77;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- Hero --- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(6, 44, 119, 0.75) 0%,
+            rgba(10, 60, 140, 0.65) 50%,
+            rgba(15, 80, 160, 0.55) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Bento Grid --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 20px;
+}
+
+.bento-grid .bento-item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.bento-grid .bento-item:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.bento-grid .bento-item:nth-child(5) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+@media (max-width: 1023px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-grid .bento-item:nth-child(1),
+    .bento-grid .bento-item:nth-child(5) {
+        grid-column: span 2;
+    }
+
+    .bento-grid .bento-item:nth-child(4) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+@media (max-width: 639px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-grid .bento-item:nth-child(1),
+    .bento-grid .bento-item:nth-child(4),
+    .bento-grid .bento-item:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+.bento-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bento-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(6, 44, 119, 0.1);
+}
+
+/* --- Testimonial Section --- */
+.testimonials-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.testimonials-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(6, 44, 119, 0.85), rgba(10, 60, 140, 0.78));
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Maps Section --- */
+.map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(6, 44, 119, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.25s ease;
+}
+
+.map-container:hover {
+    box-shadow: 0 8px 30px rgba(6, 44, 119, 0.15);
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: linear-gradient(135deg, #062C77, #0A3C8C);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6, 44, 119, 0.35);
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    background: rgba(6, 44, 119, 0.1);
+    color: #062C77;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 1px solid rgba(6, 44, 119, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(6, 44, 119, 0.18);
+    border-color: rgba(6, 44, 119, 0.35);
+}
+
+.btn-secondary:focus-visible {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+}
+
+/* --- Form --- */
+.form-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid rgba(6, 44, 119, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #1E3A5F;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #062C77;
+    box-shadow: 0 0 0 3px rgba(6, 44, 119, 0.15);
+}
+
+.form-input::placeholder {
+    color: #64748B;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #062C77;
+    margin-bottom: 0.4rem;
+}
+
+/* --- Section Headings --- */
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: rgba(6, 44, 119, 0.08);
+    color: #062C77;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid rgba(6, 44, 119, 0.15);
+}
+
+.section-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1E3A5F;
+    line-height: 1.2;
+}
+
+@media (max-width: 639px) {
+    .section-heading {
+        font-size: 1.75rem;
+    }
+}
+
+/* --- Mobile Menu --- */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-menu a {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1E3A5F;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+    color: #062C77;
+}
+
+/* --- Floating Decorative Elements --- */
+.float-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* --- Quote Mark --- */
+.quote-mark {
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: Georgia, serif;
+}
+
+/* --- Scroll Fade-In Animation --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- MyDR Button Override --- */
+.btn-mydr-pp {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem !important;
+    background: linear-gradient(135deg, #22C55E, #16A34A) !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.95rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.btn-mydr-pp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+}
